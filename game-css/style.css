@@ -1,0 +1,425 @@
+/* ========================================== */
+/* IMPORTAÇÃO DAS FONTES EXTERNAS */
+/* ========================================== */
+
+/* 
+  @import: Regra CSS para importar fontes ou outros arquivos CSS
+  'Press Start 2P': Fonte no estilo pixelado (usada em jogos retrô)
+  É a mesma fonte dos jogos clássicos de Pokémon
+*/
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* 
+  'Nabla': Fonte colorida com efeito 3D/vibrante
+  Ideal para títulos chamativos
+*/
+@import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap');
+
+/* 
+  @font-face: Permite usar fontes que não estão no Google Fonts
+  src: Caminho para o arquivo da fonte baixada localmente
+  url('../pacote-projeto-d010/fontes/idroid.otf'): Volta uma pasta (..) e entra na pasta fontes
+  format('opentype'): Especifica o formato da fonte (otf ou ttf)
+*/
+@font-face {
+    font-family: 'Android';
+    src: url('../pacote-projeto-d010/fontes/idroid.otf') format('opentype');
+    font-weight: italic;
+}
+
+/* ========================================== */
+/* VARIÁVEIS GLOBAIS (CORES E FONTES) */
+/* ========================================== */
+
+/* 
+  :root - Pseudo-classe que representa o elemento raiz (html)
+  Usado para definir variáveis CSS globais (custom properties)
+*/
+:root {
+    --fonte-padrao: arial, verdana, sans-serif;  /* Fallback: se arial falhar, usa verdana, depois sans-serif */
+    --fonte-android: 'Android';                  /* Fonte personalizada definida acima */
+    --fonte-pokemon: 'Press Start 2P';           /* Fonte estilo Pokémon */
+    --fonte-desafiadora: 'Nabla';               /* Fonte do estilo Desafiadora*/
+}
+
+/* ========================================== */
+/* ESTILOS GLOBAIS */
+/* ========================================== */
+
+/* Classe para centralizar texto */
+.texto {
+    text-align: center;
+}
+
+/* Classe para texto vermelho */
+.colortext {
+    color: rgb(255, 0, 0);
+}
+
+/* 
+  Parágrafos: tamanho da fonte 20px
+  px = pixels (unidade absoluta)
+*/
+p {
+    font-size: 20px;
+}
+
+/* 
+  Reset de margens e preenchimentos
+  margin: 0 remove margens externas
+  padding: 0 remove espaçamentos internos
+  height: 100% faz body e html ocuparem a tela toda
+*/
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/*
+  background-position: center → centraliza a imagem
+  background-repeat: no-repeat → não repete a imagem
+  background-size: cover → cobre todo o elemento sem distorcer
+  background-attachment: fixed → efeito parallax (imagem fixa enquanto rola)
+*/
+body {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* ========================================== */
+/* ASIDE (CAIXA LATERAL) - TEXTO AMARELO */
+/* ========================================== */
+
+/*
+  aside: Tag semântica para conteúdo lateral/adicional
+  background-color: fundo vermelho escuro
+  padding: espaçamento interno de 10px em todos os lados
+  border-radius: arredonda os cantos
+  box-shadow: cria sombra (deslocamento horizontal, vertical, blur, espalhamento, cor)
+  color: #f5db46 → amarelo dourado (cor dos textos do Pokémon)
+*/
+aside {
+    background-color: rgb(70, 1, 1);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 0px 0px 2px rgba(49, 49, 49, 0.342);
+    font-size: 20px;
+    color: #f5db46;
+}
+
+/* ========================================== */
+/* SEÇÃO PARALLAX */
+/* ========================================== */
+
+/*
+  .normal: Classe com efeito parallax
+  background-image: url('../img/pokefundo.png') → imagem de fundo
+  background-attachment: fixed → (imagem fixa)
+  min-height: 100vh → altura mínima de 100% da viewport (tela visível)
+  vh = viewport height (unidade relativa à tela)
+  display: flex → ativa o Flexbox
+  align-items: center → centraliza verticalmente
+  justify-content: center → centraliza horizontalmente
+*/
+.normal {
+    background-image: url('../img/pokefundo.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========================================== */
+/* FORMULÁRIO DE LOGIN */
+/* ========================================== */
+
+/*
+  .login-form: Container do formulário
+  padding: 30px → espaçamento interno
+  border-radius: 20px → cantos arredondados
+*/
+.login-form {
+    padding: 30px;
+    border-radius: 20px;
+}
+
+/* ========================================== */
+/* CABEÇALHO */
+/* ========================================== */
+
+/*
+  header: Cabeçalho da página
+  background-image: linear-gradient() → gradiente degradê
+  to bottom → direção: do topo para baixo
+  #c42a2a (vermelho claro) → #7e0808 (vermelho escuro)
+*/
+header {
+    background-image: linear-gradient(to bottom, #c42a2a, #7e0808);
+    color: white;
+    padding: 20px;
+}
+
+/* 
+  Seletor descendente: .Meu > h1 → apenas h1 que são filhos DIRETOS de .Meu
+  font-family: usa a variável --fonte-pokemon
+*/
+.Meu > h1 {
+    font-family: var(--fonte-pokemon);
+    color: yellow;
+}
+
+.Meu {
+    text-align: center;
+}
+
+/* ========================================== */
+/* RODAPÉ COM MARQUEE (TEXTO ROLANTE) */
+/* ========================================== */
+
+/*
+  .footer: Rodapé fixo na tela
+  position: fixed → fixa na posição definida
+  bottom: 0 → cola na parte inferior
+  left: 0 → cola na esquerda
+  width: 100% → ocupa toda a largura
+  
+*/
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #310101;
+    color: white;
+    padding: 10px 0;
+    font-family: var(--fonte-pokemon);
+}
+
+/* Container do texto rolante */
+.marquee-container {
+    overflow: hidden;      /* Esconde o que ultrapassar */
+    white-space: nowrap;   /* Impede quebra de linha */
+    box-sizing: border-box; /* Inclui padding/borda no cálculo da largura */
+    width: 100%;
+}
+
+/* Texto que vai rolar */
+.marquee-text {
+    font-family: var(--fonte-pokemon);
+    display: inline-block;  /* Permite aplicar transformações */
+    padding-left: 100%;     /* Começa fora da tela (direita) */
+    animation: marquee 15s linear infinite; /* Aplica a animação */
+    color: #f5db46;
+}
+
+/* 
+  @keyframes: Define a animação chamada "marquee"
+  0%: início da animação (posição original)
+  100%: fim da animação (deslocado -100% no eixo X)
+*/
+@keyframes marquee {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
+
+/* 
+  Pseudo-classe :hover → quando o mouse passa por cima
+  animation-play-state: paused → pausa a animação
+  Efeito: mouse em cima do container, o texto para de rolar
+*/
+.marquee-container:hover .marquee-text {
+    animation-play-state: paused;
+}
+
+/* ========================================== */
+/* SEÇÃO "VAMOS JOGAR" - CORRIGIDA */
+/* ========================================== */
+
+/*
+  .jogatina: Classe para o título "Vamos jogar"
+  text-align: center → centralizado
+  font-family: var(--fonte-desafiadora) 
+  background-color: #7e0808 → fundo vermelho escuro
+  padding: 20px → espaçamento interno
+  border-radius: 10px → cantos arredondados
+  font-size: 100px → tamanho enorme para destaque
+  background-image: none → remove qualquer gradiente anterior
+*/
+.jogatina {
+    text-align: center;
+    font-family: var(--fonte-desafiadora);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 100px;
+    background-image: none;
+    background-color: #7e0808;
+     background-image: linear-gradient(to right, #ebd142ab, transparent);
+    
+
+}
+
+.criadora{
+   background-image: linear-gradient(to right, #f5db46, transparent);
+}
+
+/* ========================================== */
+/* SEÇÃO REGRAS (MANTÉM O GRADIENTE ORIGINAL) */
+/* ========================================== */
+
+/*
+  .Regras: Classe para o título "Regras"
+  color: rgb(102, 0, 0) → vermelho escuro
+  Gradiente da direita para esquerda (to right)
+  #f5db46 (amarelo) para transparent (transparente)
+*/
+.Regras {
+    color: rgb(102, 0, 0);
+    background-image: linear-gradient(to right, #f5db46, transparent);
+}
+
+/* ========================================== */
+/* CONTEÚDO PRINCIPAL - CORRIGIDO */
+/* ========================================== */
+
+/*
+  main: Tag semântica de conteúdo principal
+  
+  CORREÇÃO 1 (BACKGROUND): Adicionado background-repeat: no-repeat → impede a imagem de duplicar
+  CORREÇÃO 2 (BACKGROUND): Adicionado background-size: cover → imagem cobre todo o fundo do main
+  CORREÇÃO 3 (BACKGROUND): Adicionado background-position: center → centraliza a imagem de fundo
+  
+  CORREÇÃO 4 (LARGURA): Aumentado max-width de 1120px para 1400px → main fica mais largo em computador
+  CORREÇÃO 5 (RESPONSIVIDADE): Adicionado width: 95% → em telas menores, ocupa 95% da largura
+  
+  CORREÇÃO 6 (ESPAÇAMENTO): Alterado margin: auto para margin: 20px auto → dá um espaçamento no topo/baixo
+*/
+main {
+    min-width: 280px;               /* Mantido: largura mínima para celular */
+    max-width: 1400px;              /* ALTERADO: (mais largo em PC) */
+    width: 95%;                     /* ADICIONADO: largura responsiva para telas menores */
+    margin: 20px auto;              /* ALTERADO: era só "margin: auto", agora com espaçamento topo/baixo */
+    padding: 20px;
+    background-color: rgb(249, 249, 249);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.568);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    /* background com paralllax*/
+    background-image: url('../img/fundinho.png');
+
+}
+
+/* ========================================== */
+/* ESTILOS DO FORMULÁRIO (LOGIN)
+/* ========================================== */
+
+.login-form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;  /* Organiza os itens em coluna (um abaixo do outro) */
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Cabeçalho do formulário (logo + título) */
+.login__header {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Logo do Pokémon */
+.logo-img {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+/* Título dentro do formulário */
+.login__header h1 {
+    color: #df0a0d;
+    font-size: 30px;
+    text-align: center;
+    text-shadow: 1px 1px 0 #000; /* Sombra no texto (deslocamento X, deslocamento Y, blur, cor) */
+    font-family: var(--fonte-pokemon);
+}
+
+/* Campo de input (digitar nome) */
+.login__input {
+    border: 3px solid #df0a0d;
+    border-radius: 8px;
+    color: #333;
+    font-size: 0.8em;  /* 0.8em = 80% do tamanho da fonte do elemento pai */
+    margin-bottom: 20px;
+    max-width: 300px;
+    outline: none;      /* Remove a borda azul de foco */
+    padding: 15px;
+    width: 100%;
+    font-family: var(--fonte-pokemon);
+    text-align: center;
+    background-color: white;
+}
+
+/* Botão do formulário */
+.login__button {
+    background-color: #df0a0d;
+    border: 3px solid #ffffff;
+    border-radius: 8px;
+    cursor: pointer;     /* Muda o cursor para mãozinha */
+    font-size: 0.8em;
+    max-width: 300px;
+    padding: 15px;
+    width: 100%;
+    font-family: var(--fonte-pokemon);
+    transition: all 0.3s ease;  /* Animação suave para hover */
+    text-shadow: 2px 2px 0 #000; /* Sombra no texto */
+    color: rgb(151, 114, 45);
+    text-decoration: underline;
+}
+
+/* 
+  :hover → quando o mouse passa por cima
+  transform: scale(1.05) → aumenta 5%
+  box-shadow: cria um brilho vermelho ao redor
+*/
+.login__button:hover {
+    transform: scale(1.05);
+    background-color: #ff0000;
+    box-shadow: 0 0 20px #df0a0d;
+}
+
+/* ========================================== */
+/* TÍTULOS H1 E H2 (TAMANHOS) */
+/* ========================================== */
+
+/*
+  h1: Título principal
+  font-weight: controla a grossura da fonte
+*/
+h1 {
+    font-weight: 150px;
+    font-size: 35px;
+}
+
+/*
+  h2: Subtítulo
+*/
+h2 {
+    font-weight: 100px;
+    font-size: 35px;
+    color: rgb(102, 0, 0);
+}
+
+.audio-top-left audio {
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    height: 40px;
+}

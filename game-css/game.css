@@ -1,0 +1,372 @@
+/* =========================
+   IMPORTAÇÃO DE FONTES
+========================= */
+
+/* Fonte estilo futurista */
+@import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Fonte estilo retrô (Pokémon) */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+/* =========================
+   VARIÁVEIS GLOBAIS
+========================= */
+
+:root {
+    --fonte-padrao: arial, verdana, sans-serif;
+    --fonte-destaque: 'Quantico';
+    --fonte-android: 'Android';
+    --fonte-pokemon: 'Press Start 2P';
+}
+
+
+/* =========================
+   RESET CSS
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   BODY (FUNDO DA PÁGINA)
+========================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+
+    /* Imagem de fundo */
+    background-image: url('../img/pokefundo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+/* =========================
+   PLAYER DE ÁUDIO FIXO
+========================= */
+
+.audio-top-left {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+
+    /* Visual */
+    background-color: rgba(165, 36, 36, 0.288);
+    border-radius: 30px;
+    padding: 8px 12px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.11);
+}
+
+.audio-top-left audio {
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    height: 40px;
+}
+
+
+/* =========================
+   MAIN (CONTAINER PRINCIPAL)
+========================= */
+
+main {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    min-height: 100vh;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+
+/* =========================
+   HEADER (TOPO DO JOGO)
+========================= */
+
+header {
+    display: flex;
+    flex-direction: column; /* Nome em cima, stats embaixo */
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(255, 255, 255, 0.8);
+
+    width: 600px;
+    max-width: 606px;
+
+    padding: 30px;
+    margin: 0 0 30px;
+
+    border-radius: 5px;
+    gap: 20px;
+}
+
+/* Título principal */
+.header-titles h1 {
+    font-family: var(--fonte-pokemon);
+    font-size: 30px;
+    color: #750000;
+    text-align: center;
+}
+
+/* Subtítulo */
+.header-titles p {
+    font-family: var(--fonte-destaque);
+    font-size: 25px;
+    color: #333;
+    text-align: center;
+}
+
+/* Nome do jogador */
+.player-name {
+    text-decoration: underline;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+/* =========================
+   ESTATÍSTICAS DO JOGO
+========================= */
+
+.stats {
+    display: flex;
+    flex-direction: row; /* Itens lado a lado */
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Cada item de estatística */
+.stat-item {
+    background: rgb(182, 155, 0);
+    padding: 5px 12px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+/* Label dentro da stat */
+.stat-label {
+    margin-right: 5px;
+}
+
+
+/* =========================
+   TABULEIRO (GRID DE CARTAS)
+========================= */
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 15px;
+
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+/* =========================
+   CARTAS (ESTRUTURA BASE)
+========================= */
+
+.card {
+    aspect-ratio: 3/4;
+    position: relative;
+
+    /* Necessário para efeito 3D */
+    transform-style: preserve-3d;
+
+    /* Transições */
+    transition: transform 0.5s, box-shadow 0.3s, transform 0.3s;
+
+    cursor: pointer;
+
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Efeito ao passar o mouse */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Carta virada */
+.card.is-flipped {
+    transform: rotateY(180deg);
+}
+
+
+/* =========================
+   FACES DA CARTA
+========================= */
+
+.card-front,
+.card-back {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    backface-visibility: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+    border: 4px solid #ff0000;
+
+    background: transparent;
+    overflow: hidden;
+}
+
+/* Frente da carta */
+.card-front {
+    background-color: #ffcb05;
+    transform: rotateY(0deg);
+}
+
+/* Verso da carta */
+.card-back {
+    background-color: transparent;
+    transform: rotateY(180deg);
+}
+
+/* Imagens das cartas */
+.card-back img,
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+/* =========================
+   ANIMAÇÕES (MATCH)
+========================= */
+
+/* Efeito ao acertar */
+.card.matched .card-back {
+    animation: fadePokemon 0.5s ease forwards;
+}
+
+@keyframes fadePokemon {
+    0% {
+        opacity: 1;
+        filter: saturate(1);
+    }
+    100% {
+        opacity: 0.6;
+        filter: saturate(0.3);
+    }
+}
+
+.card.matched .card-front {
+    animation: fadeFront 0.5s ease forwards;
+}
+
+@keyframes fadeFront {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+/* Desativa interação após match */
+.card.matched {
+    pointer-events: none;
+    cursor: default;
+}
+
+
+/* =========================
+   BOTÃO DE RESET
+========================= */
+
+.reset-btn {
+    display: block;
+    margin: 30px auto 0;
+
+    padding: 12px 35px;
+    font-size: 1.1em;
+
+    background-color: #4b0202;
+    color: white;
+
+    border: 2px solid #ffcb05;
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: all 0.3s;
+    font-weight: bold;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover do botão */
+.reset-btn:hover {
+    background-color: #f04444;
+    transform: scale(1.05);
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+/* Tablets */
+@media screen and (max-width: 920px) {
+    .board {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* Celulares */
+@media screen and (max-width: 600px) {
+    header {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .board {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .header-titles h1 {
+        font-size: 1rem;
+    }
+
+    .audio-top-left {
+        top: 10px;
+        left: 10px;
+        padding: 4px 8px;
+    }
+
+    .audio-top-left audio {
+        width: 180px;
+        height: 35px;
+    }
+}

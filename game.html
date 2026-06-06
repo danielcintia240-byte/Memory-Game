@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#ffcb05">
+
+    <link rel="shortcut icon" href="./cards/pokelogo.png" type="image/x-icon" />
+    <title>Jogo da Memória Pokémon</title>
+    <link rel="stylesheet" href="./game-css/game.css">
+</head> 
+<body>
+    <div class="audio-top-left">
+        <audio controls>
+            <source src="./Audio/Ruby.mp3">
+        </audio>
+    </div>
+
+    <main>
+        <header>
+            <div class="header-titles">
+                <h1>🎮 Jogo da Memória Pokémon</h1>
+                <p>Todos os Pares de Pokémon!</p>
+                <div class="player-info">
+                    <span class="player-name"></span>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">Jogadas:</span>
+                    <span class="stat-value" id="plays">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Pares:</span>
+                    <span class="stat-value" id="hits">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total:</span>
+                    <span class="stat-value" id="total">20</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Tempo:</span>
+                    <span class="stat-value" id="timer">0</span>
+                </div>
+            </div>
+        </header>
+        
+        <div class="board"></div>
+        
+        <button class="reset-btn" onclick="window.location.reload()">
+            🔄 Novo Jogo
+        </button>
+    </main>
+
+    <script src="./JavaScript/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#ffcb05">
+    
+    <link rel="shortcut icon" href="./cards/pokelogo.png" type="image/x-icon" />
+    <title>Poke Apresentação</title>
+    
+    <link rel="stylesheet" href="./game-css/style.css">
+</head>
+
+<body>
+    <main>
+        <header class="Meu">
+            <h1>Hora do Pokedesafio</h1>
+        </header>
+
+        <p> Olá, jogador. Seja bem-vindo ao Pokedesafio.
+
+Aqui, sua coordenação motora será testada. Você vai precisar de precisão, ritmo e controle para vencer. Não basta querer – é preciso acertar.
+
+Além disso, você terá a chance de rever os Pokémons da primeira geração. Os clássicos. Os originais. Cada um deles está aqui esperando para ver se você ainda lembra.
+
+E mais: esse desafio vai mostrar o quão bom você é com a mente. Velocidade de raciocínio, foco, paciência e memória – tudo será avaliado. </p>
+
+        <div class="audio-top-left">
+            <audio controls>
+                <source src="./Audio/Opening - Pokémon Ruby_Sapphire_Emerald Soundtrack - Daintii Music (youtube).mp3">
+            </audio>
+        </div>
+        
+        <h2 class="Regras">Regras</h2>
+
+        <aside>
+            <ul>
+                <li>1: Achar todos os pares das respectivas cartas</li>
+                <li>2: Desistencias não incluídas</li>
+                <li>3: O jogo inteiro só acaba quando todas as cartas forem viradas.</li>
+                <li>5: Existe tempo, mas não existe um tempo limitado, o jogador poderá <br>
+                    jogar o tempo que quiser ele só terá consciência de seu tempo</li>
+                <li>5: Você poderá escolher entre os pokémons da 1</li>
+                <li>6: Terá um som de vitória ao terminar o jogo</li>
+            </ul>
+        </aside>
+
+        <h2 class="criadora">Criadores</h2>
+
+        <h3> Felipe Alves de Souza 2 AMS</h3>
+        <p> Criador da parte de programação: HTML, CSS e JAVA SCRIPT </p>
+
+        <h3> Guilherme Martins 2 AMS</h3>
+        <p> Criador da parte de design do jogo : Tamanho, Imagens, Músicas e Testador das funcionalidades do site e acessibilidades. </p>
+
+        <h2 class="jogatina">Vamos jogar</h2>
+
+        <section class="normal">
+            <form class="login-form">
+                <div class="login__header">
+                    <img class="logo-img" src="./cards/pokelogo.png" alt="Pokemon Logo" />
+                    <h1>Jogo da memória</h1>
+                </div>
+
+                <script defer src="./JavaScript/login.js"></script>
+                
+                <input type="text" placeholder="Seu nome" class="login__input" />
+                
+                <button type="submit" class="login__button" onclick="window.open('./game.html', '_blank')">Eu Escolho Você</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="marquee-container">
+            <div class="marquee-text">
+                <span>I choose you</span> • 
+                <span>I choose you</span> • 
+                <span>I choose you</span> • 
+                <span>I choose you</span> • 
+                <span>I choose you</span> • 
+                <span>I choose you</span> • 
+                <span>I choose you</span> • 
+                <span>I choose you</span> • 
+                <span>I choose you</span> • 
+                <span>I choose you</span> • 
+                <span>I choose you</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(reg => console.log('PWA ativa!', reg))
+                    .catch(err => console.error('Erro PWA:', err));
+            });
+        }
+    </script>
+</body>
+</html>
