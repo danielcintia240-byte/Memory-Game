@@ -87,3 +87,27 @@ form.addEventListener('submit', handleSubmit);
 button.setAttribute('disabled', '');
 button.style.opacity = '0.5';
 button.style.cursor = 'not-allowed';
+
+
+/* =========================
+   PARAR ÁUDIO AO SAIR DA PÁGINA
+========================= */
+
+/*
+   Para todos os sons quando o usuário sai da página
+*/
+function stopAllAudios() {
+    const allAudios = document.querySelectorAll('audio');
+    allAudios.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+    });
+}
+
+window.addEventListener('beforeunload', stopAllAudios);
+window.addEventListener('pagehide', stopAllAudios);
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        stopAllAudios();
+    }
+});
