@@ -360,3 +360,21 @@ function startBackgroundSound(musicPath) {
 
 // Inicia o jogo ao carregar a pagina
 document.addEventListener('DOMContentLoaded', loadGame);
+
+
+/* =========================================
+   PARAR ÁUDIO AO SAIR DA PÁGINA
+========================================= */
+
+/*
+   Para todos os sons quando o usuário sai da página
+   (importante para PWA onde a página pode estar rodando em background)
+*/
+window.addEventListener('beforeunload', stopAllSounds);
+window.addEventListener('pagehide', stopAllSounds);
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        // Pausa áudio quando abete outra aba/janela
+        stopAllSounds();
+    }
+});
