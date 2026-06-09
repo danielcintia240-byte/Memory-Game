@@ -69,11 +69,17 @@ p {
   margin: 0 remove margens externas
   padding: 0 remove espaçamentos internos
   height: 100% faz body e html ocuparem a tela toda
+  overflow-x: hidden previne rolagem horizontal
 */
-body, html {
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /*
@@ -129,7 +135,8 @@ aside {
     background-size: cover;
     background-attachment: fixed;
     background-position: center center;
-    min-height: 100vh;
+    width: 100%;
+    padding: 40px 0;
     display: flex;
     align-items: center;
     justify-content: center;
